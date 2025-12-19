@@ -1,31 +1,3 @@
-# Descrición
-
-Escena con una multitud de NPC y un jugador que pone bombas pulsando E. Cuando los NPC ven la bomba, huyen durante 5s en direccion a la zona de reunión
-
-# Título principal
-
-**Escena bomba**
-
-## Subtítulo
-
-Lista de cambios:
-
--Añadido al script *PlayerController* una función que instancia una bomba al pulsar E.
-
--Creado un prefab para una bomba y para un NPC llamado Fuxidor que huye de ella.
-
--Creado un script *Bomb* que destruye la bomba tras 5s desde que se instanció y reproduce un clip de audio.
-
--Añadido audio de explosión para cuando la bomba explota.
-
--Añadida una escena nueva donde se define un punto de reunión hacia el cual los NPC Fuxidor se dirigen en caso de detectar una bomba.
-
--Creado un script *FuxidorController* que establece el comportamiento de los mismos. Los fuxidores deambulan por la escena al azar y cuando una bomba entra en su campo de visión aumentan su velocidad y huyen hacia el lugar de reunión durante 5 segundos. Transcurrido este tiempo vuelven a deambular. 
-
-[Ligazón](https://exemplo.com)
-
-
-```csharp
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -134,31 +106,3 @@ public class FuxidorController : MonoBehaviour
         GetComponent<NavMeshAgent>().SetDestination(meetingPoint.transform.position);
     }
 }
-
-
-```
-
-```csharp
-using System.Collections;
-using UnityEngine;
-
-public class Bomb : MonoBehaviour
-{
-    public float delay = 5f; // duración de la bomba
-    [SerializeField] AudioClip clip; //sonido de explosion
-    void Start()
-    {
-        //Explota tras 5s reproduciendo un audio
-        Invoke("Explode", delay);
-    }
-
-    void Explode()
-    {
-        AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
-        
-        Destroy(gameObject);
-    }
-    
-}
-
-```

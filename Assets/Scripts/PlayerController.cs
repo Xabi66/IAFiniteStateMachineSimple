@@ -15,6 +15,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(AudioSource))] // Require un AudioSource para o son
 public class PlayerController : MonoBehaviour // Controlador sinxelo para o xogador con soporte para ambos sistemas de input de Unity
 {
+    [Header("Bomb Settings")]
+    public GameObject bombPrefab; //Prefab de la bomba
+
     [Header("Movement Settings")]
     public float moveSpeed = 5f;           // Velocidade de movemento cara adiante/atrás
     public float rotationSpeed = 180f;     // Velocidade de rotación (graos por segundo)
@@ -66,6 +69,10 @@ public class PlayerController : MonoBehaviour // Controlador sinxelo para o xoga
         {
             HandleSpaceAction();
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ThrowBomb();
+        }
     }
 
     //=========================================================================
@@ -92,10 +99,20 @@ public class PlayerController : MonoBehaviour // Controlador sinxelo para o xoga
             {
                 HandleSpaceAction();
             }
+            if (Keyboard.current.eKey.wasPressedThisFrame)
+            {
+                ThrowBomb();
+            }
         }
 #else
         GetOldInput(); // Se o novo sistema non está dispoñible, usa o antigo como fallback
 #endif
+    }
+    
+    //Metodo que instancia la bomba en la posicion del jugador
+    void ThrowBomb()
+    {
+        Instantiate(bombPrefab, transform.position, Quaternion.identity);
     }
 
     //=========================================================================
