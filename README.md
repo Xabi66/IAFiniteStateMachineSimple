@@ -22,7 +22,7 @@ Lista de cambios:
 
 -Creado un script *FuxidorController* que establece el comportamiento de los mismos. Los fuxidores deambulan por la escena al azar y cuando una bomba entra en su campo de visión aumentan su velocidad y huyen hacia el lugar de reunión durante 5 segundos. Transcurrido este tiempo vuelven a deambular. 
 
-[Ligazón](https://exemplo.com)
+[Ligazón](https://github.com/Xabi66/IAFiniteStateMachineSimple/blob/main/Assets/Scripts/FuxidorController.cs)
 
 
 ```csharp
